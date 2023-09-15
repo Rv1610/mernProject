@@ -26,7 +26,7 @@ app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // Allow preflight requests for all routes
 
 // Define an endpoint for saving client data
-app.post('/submit-form', async (req, res) => {
+app.post('/api/submit-form', async (req, res) => {
   // Create a new client object based on the request body
   const newClient = new Client(req.body);
 
