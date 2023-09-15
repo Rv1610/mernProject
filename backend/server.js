@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 // Define your CORS middleware configuration here
 const corsOptions = {
-  origin: ['https://mern-frontend-sepia.vercel.app', 'http://localhost:3000'],
+  oorigin: process.env.FRONTEND_URL || 'http://localhost:3000',
   methods: ['POST', 'GET'],
   credentials: true, // Enable credentials
 };
