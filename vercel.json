@@ -3,11 +3,13 @@
     "builds": [
       {
         "src": "frontend/package.json",
-        "use": "@vercel/node"
+        "use": "@vercel/node",
+        "config": { "zeroConfig": true }
       },
       {
-        "src": "backend/server.js",
-        "use": "@vercel/node"
+        "src": "backend/package.json",
+        "use": "@vercel/node",
+        "config": { "zeroConfig": true }
       }
     ],
     "routes": [
@@ -16,11 +18,13 @@
         "dest": "backend/server.js"
       },
       {
+        "src": "/api/.*",
+        "dest": "backend/server.js"
+      },
+      {
         "src": "/(.*)",
-        "dest": "frontend/$1",
-        "status": 200
+        "dest": "frontend/$1"
       }
     ]
-    
   }
   
