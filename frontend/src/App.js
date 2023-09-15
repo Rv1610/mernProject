@@ -60,8 +60,8 @@ function App() {
   
     try {
       const response = await axios.post(
-        'http://localhost:3001/submit-form', // Replace with your backend URL
-        // 'https://mern-backendes.vercel.app/submit-form', // Replace with your backend URL
+        // 'http://localhost:3001/submit-form', // Replace with your backend URL
+        'https://mern-project-backend-omega.vercel.app/submit-form', // Replace with your backend URL
         formData, // Your form data here
         {
           withCredentials: true, // Enable credentials (cookies)

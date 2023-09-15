@@ -13,7 +13,8 @@ app.use(bodyParser.json());
 
 // Define your CORS middleware configuration here
 const corsOptions = {
-  oorigin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: process.env.FRONTEND_URL,
+//   oorigin: process.env.FRONTEND_URL || 'http://localhost:3000',
   methods: ['POST', 'GET'],
   credentials: true, // Enable credentials
 };
