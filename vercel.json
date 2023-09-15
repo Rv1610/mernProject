@@ -14,11 +14,7 @@
     ],
     "routes": [
       {
-        "src": "/api/submit-form",
-        "dest": "backend/server.js"
-      },
-      {
-        "src": "/api/.*",
+        "backend": "/submit-form",
         "dest": "backend/server.js"
       },
       {
