@@ -233,7 +233,9 @@ function App() {
     </div>
 
 
-      {submitSuccess && <Alert message="Your form has been submitted successfully!" />}
+    {submitSuccess && (
+  <Alert message={`Hare Krishna ${formData.username}! Your form is submitted successfully!`} />
+)}
     </>
   );
 }
