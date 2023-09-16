@@ -180,11 +180,7 @@ select option {
   cursor: pointer; /* Show pointer cursor on hover */
   border-radius: 5px; /* Rounded corners */
   transition: background-color 0.3s ease; /* Smooth color transition on hover */
-  margin-top: 20px; /* Spacing from the elements above */
-
-  /* Center the button horizontally */
-  display: block;
-  margin: 0 auto;
+  margin-left: 38px;
 }
 
 /* Style the button on hover */
@@ -234,9 +230,38 @@ select option {
   flex-direction: column-reverse;
 }
 
+
+
+
 .query-message{
   font-weight: bolder;
+  font-size: 18px;
 }
 
 
+
+.support-icons-container {
+  display: flex;
+  justify-content: space-evenly; /* Adjust as needed to control the spacing between icons */
+  align-items: center; /* Vertically align icons in the middle */
+  font-size: 24px; /* Adjust the font size as needed */
+  color: white;
+  background: #eee7e7;
+}
+
+.support-icons-container i {
+  cursor: pointer;
+}
+
+
+
+.whatsapp-icon {
+  color: #25d366; /* WhatsApp's official green color */
+  font-size: 40px;
+}
+
+.email-icon {
+  color: #0074d9; /* Blue color commonly used for email icons */
+  font-size: 40px;
+}
 

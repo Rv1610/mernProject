@@ -2,6 +2,9 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import Alert from '../src/components/Alert';
 import axios from 'axios'; // Import Axios
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 function App() {
   const initialFormData = {
@@ -222,13 +225,13 @@ function App() {
         </div>
         <button type="submit">Submit</button>
       </form>
-      <p className="query-message">Have a question or need assistance? Contact our support team:</p>
-      <button className="contact-support-button" onClick={handleEmailButtonClick}>
-        Email Support
-      </button>
-      <button className="contact-support-button" onClick={handleWhatsAppButtonClick}>
-        WhatsApp Support
-      </button>
+      <p className="query-message">Have a question or need assistance? Contact our support team through WhatsApp or Email:</p>
+      <div className="support-icons-container">
+      <FontAwesomeIcon icon={faEnvelope} className="email-icon" onClick={handleEmailButtonClick} />
+      <FontAwesomeIcon icon={faWhatsapp} className="whatsapp-icon" onClick={handleWhatsAppButtonClick} />
+
+    </div>
+
 
       {submitSuccess && <Alert message="Your form has been submitted successfully!" />}
     </>
