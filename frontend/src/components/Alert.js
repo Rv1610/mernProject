@@ -20,7 +20,7 @@ function Alert({ message }) {
 
   return (
     showAlert && (
-      <div className="alert">
+      <div className="full-screen-alert">
         <p>{message}</p>
       </div>
     )
