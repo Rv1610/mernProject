@@ -63,6 +63,15 @@ function App() {
       }
     }
 
+
+      // Mobile number validation regex pattern (adjust as needed)
+  const mobileNumberPattern = /^[0-9]{10}$/; // Assumes a 10-digit mobile number
+
+  if (!mobileNumberPattern.test(formData.mobile)) {
+    alert('Invalid mobile number. Please enter a valid 10-digit mobile number.');
+    return; // Prevent form submission
+  }
+
     try {
       const response = await axios.post(
         'https://backend-9t1f.onrender.com/submit-form', // Replace with your backend URL
