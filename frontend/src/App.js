@@ -19,6 +19,8 @@ function App() {
 
   const [formData, setFormData] = useState(initialFormData);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submittedUsername, setSubmittedUsername] = useState('');
+
 
   // State to manage the text in <h1>
   const [h1Text, setH1Text] = useState('⏰HurryUp! Few Seats Left');
@@ -74,6 +76,8 @@ function App() {
       );
       if (response.status === 200) {
         setSubmitSuccess(true);
+        setSubmittedUsername(formData.username); // Store the username
+
         console.log('Form submitted successfully');
         // Clear the form
         setFormData(initialFormData);
@@ -234,7 +238,7 @@ function App() {
 
 
     {submitSuccess && (
-  <Alert message={`Hare Krishna ${formData.username}! Your form is submitted successfully!`} />
+  <Alert message={`Hare Krishna ${submittedUsername}! Your form is submitted successfully!`} />
 )}
     </>
   );
