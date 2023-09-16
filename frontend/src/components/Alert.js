@@ -15,6 +15,9 @@ function Alert({ message }) {
       return () => {
         clearTimeout(timeout);
       };
+    } else {
+      // Clear the message when unmounting
+      setShowAlert(false);
     }
   }, [message]);
 
