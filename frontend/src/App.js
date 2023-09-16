@@ -238,7 +238,7 @@ function App() {
 
 
     {submitSuccess && (
-  <Alert message={`Hare Krishna ${submittedUsername}! Your form is submitted successfully!`} />
+  <Alert message={`Hare Krishna 🙏🏻 ${submittedUsername} Ji! Your form is submitted successfully!`} />
 )}
     </>
   );
