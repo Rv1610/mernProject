@@ -96,7 +96,7 @@ function App() {
 
   const handleWhatsAppButtonClick = () => {
     // Replace '123456789' with the actual phone number of your WhatsApp support contact.
-    const phoneNumber = '123456789';
+    const phoneNumber = '8800980768';
 
     // Construct the WhatsApp URL.
     const whatsappURL = `https://wa.me/${phoneNumber}`;
