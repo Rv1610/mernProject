@@ -104,7 +104,7 @@ function App() {
     const body = encodeURIComponent('Please describe your query here.'); // Encode the body text
 
     // Construct the mailto link with recipient, subject, and body
-    const mailtoLink = `mailto:ananyakashyap0508@gmail.com?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:rakar2317@gmail.com?subject=${subject}&body=${body}`;
 
     // Open the user's default email client with the pre-filled email
     window.location.href = mailtoLink;
