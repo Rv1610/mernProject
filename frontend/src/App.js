@@ -50,19 +50,17 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     for (const key in formData) {
       if (formData[key] === '') {
         alert('Fill in all fields. All fields are mandatory.');
         return; // Prevent form submission
       }
     }
-  
+
     try {
       const response = await axios.post(
-        // 'http://localhost:3001/submit-form', // Replace with your backend URL
         'https://backend-9t1f.onrender.com/submit-form', // Replace with your backend URL
-        // 'https://mern-project-backend-silk.vercel.app/submit-form', // Replace with your backend URL
         formData, // Your form data here
         {
           withCredentials: true, // Enable credentials (cookies)
@@ -84,7 +82,7 @@ function App() {
       console.error(error);
     }
   };
-  
+
   const handleEmailButtonClick = () => {
     const subject = encodeURIComponent('User Query'); // Encode the subject
     const body = encodeURIComponent('Please describe your query here.'); // Encode the body text
@@ -94,6 +92,17 @@ function App() {
 
     // Open the user's default email client with the pre-filled email
     window.location.href = mailtoLink;
+  };
+
+  const handleWhatsAppButtonClick = () => {
+    // Replace '123456789' with the actual phone number of your WhatsApp support contact.
+    const phoneNumber = '123456789';
+
+    // Construct the WhatsApp URL.
+    const whatsappURL = `https://wa.me/${phoneNumber}`;
+
+    // Open the WhatsApp chat page in a new tab.
+    window.open(whatsappURL);
   };
 
   // Calculate pricing based on age range
@@ -113,18 +122,18 @@ function App() {
   };
 
   return (
-        <>
-         <div className="background-video">
+    <>
+      <div className="background-video">
         <video autoPlay muted loop>
           <source src={require("../src/assets/theme.mp4")} type="video/mp4" />
           {/* You can provide multiple source elements for different video formats */}
         </video>
-        </div>
-    <div className="header">
+      </div>
+      <div className="header">
         <h1 className="academy-name">Hare Krishna Dance Academy</h1>
       </div>
       <h1 style={{ width: '400px', margin: '0 auto' }}>{h1Text}</h1>
-      <form className="form-container"  onSubmit={handleSubmit}>
+      <form className="form-container" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Full Name:</label>
           <input
@@ -215,8 +224,11 @@ function App() {
       </form>
       <p className="query-message">Have a question or need assistance? Contact our support team:</p>
       <button className="contact-support-button" onClick={handleEmailButtonClick}>
-  Contact Support
-</button>
+        Email Support
+      </button>
+      <button className="contact-support-button" onClick={handleWhatsAppButtonClick}>
+        WhatsApp Support
+      </button>
 
       {submitSuccess && <Alert message="Your form has been submitted successfully!" />}
     </>
