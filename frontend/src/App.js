@@ -27,15 +27,24 @@ function App() {
   const [h1Text, setH1Text] = useState('⏰HurryUp! Few Seats Left');
   const [pricing, setPricing] = useState('');
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setH1Text((prevText) =>
-        prevText === '⏰HurryUp! Few Seats Left' ? 'Registrations are Open!' : '⏰HurryUp! Few Seats Left'
-      );
-    }, 2000);
 
-    return () => clearInterval(interval);
-  }, []);
+useEffect(() => {
+  const messages = [
+    '⏰HurryUp! Few Seats Left',
+    'Registrations are Open!',
+    'Navratri Special Offer'
+  ];
+  
+  let currentIndex = 0;
+
+  const interval = setInterval(() => {
+    setH1Text(messages[currentIndex]);
+    currentIndex = (currentIndex + 1) % messages.length;
+  }, 2000);
+
+  return () => clearInterval(interval);
+}, []);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
