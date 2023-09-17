@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import Alert from '../src/components/Alert';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -20,23 +20,19 @@ function App() {
   const [formData, setFormData] = useState(initialFormData);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submittedUsername, setSubmittedUsername] = useState('');
+  const [showSpinner, setShowSpinner] = useState(false);
+  const [submissionMessage, setSubmissionMessage] = useState('');
 
-
-  // State to manage the text in <h1>
   const [h1Text, setH1Text] = useState('⏰HurryUp! Few Seats Left');
-
-  // Pricing information based on age range
   const [pricing, setPricing] = useState('');
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Toggle between "Hurry Up!" and "Registrations are Open!"
       setH1Text((prevText) =>
         prevText === '⏰HurryUp! Few Seats Left' ? 'Registrations are Open!' : '⏰HurryUp! Few Seats Left'
       );
-    }, 2000); // Change text every 2 seconds
+    }, 2000);
 
-    // Clean up the interval when the component unmounts
     return () => clearInterval(interval);
   }, []);
 
@@ -47,7 +43,6 @@ function App() {
       [name]: value,
     });
 
-    // Update pricing information based on selected age
     if (name === 'age') {
       setPricing(calculatePricing(value));
     }
@@ -56,72 +51,70 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setShowSpinner(true);
+    setSubmissionMessage('Please wait, your submission is in processing...');
+
     for (const key in formData) {
       if (formData[key] === '') {
+        setShowSpinner(false);
+        setSubmissionMessage('');
         alert('Fill in all fields. All fields are mandatory.');
-        return; // Prevent form submission
+        return;
       }
     }
 
+    const mobileNumberPattern = /^[0-9]{10}$/;
 
-      // Mobile number validation regex pattern (adjust as needed)
-  const mobileNumberPattern = /^[0-9]{10}$/; // Assumes a 10-digit mobile number
-
-  if (!mobileNumberPattern.test(formData.mobile)) {
-    alert('Invalid mobile number. Please enter a valid 10-digit mobile number.');
-    return; // Prevent form submission
-  }
+    if (!mobileNumberPattern.test(formData.mobile)) {
+      setShowSpinner(false);
+      setSubmissionMessage('');
+      alert('Invalid mobile number. Please enter a valid 10-digit mobile number.');
+      return;
+    }
 
     try {
       const response = await axios.post(
-        'https://backend-9t1f.onrender.com/submit-form', // Replace with your backend URL
-        formData, // Your form data here
+        'https://backend-9t1f.onrender.com/submit-form',
+        formData,
         {
-          withCredentials: true, // Enable credentials (cookies)
+          withCredentials: true,
           headers: {
             'Content-Type': 'application/json',
           },
         }
       );
       if (response.status === 200) {
+        setShowSpinner(false);
+        setSubmissionMessage(`Hare Krishna 🙏🏻 ${formData.username} Ji! Your form is submitted successfully!`);
         setSubmitSuccess(true);
-        setSubmittedUsername(formData.username); // Store the username
-
-        console.log('Form submitted successfully');
-        // Clear the form
+        setSubmittedUsername(formData.username);
         setFormData(initialFormData);
       } else {
+        setShowSpinner(false);
+        setSubmissionMessage('');
         alert('Form submission failed. Please try again.');
       }
     } catch (error) {
+      setShowSpinner(false);
+      setSubmissionMessage('');
       alert('An error occurred while submitting the form. Please try again later.');
       console.error(error);
     }
   };
 
   const handleEmailButtonClick = () => {
-    const subject = encodeURIComponent('User Query'); // Encode the subject
-    const body = encodeURIComponent('Please describe your query here.'); // Encode the body text
-
-    // Construct the mailto link with recipient, subject, and body
+    const subject = encodeURIComponent('User Query');
+    const body = encodeURIComponent('Please describe your query here.');
     const mailtoLink = `mailto:rakar2317@gmail.com?subject=${subject}&body=${body}`;
-
-    // Open the user's default email client with the pre-filled email
     window.location.href = mailtoLink;
   };
 
   const handleWhatsAppButtonClick = () => {
-    // Replace '123456789' with the actual phone number of your WhatsApp support contact.
     const phoneNumber = '918800980768';
-
-    // Construct the WhatsApp URL.
     const whatsappURL = `https://wa.me/${phoneNumber}`;
-
-    // Open the WhatsApp chat page in a new tab.
     window.open(whatsappURL);
   };
 
-  // Calculate pricing based on age range
   const calculatePricing = (selectedAge) => {
     switch (selectedAge) {
       case '06-10':
@@ -142,7 +135,6 @@ function App() {
       <div className="background-video">
         <video autoPlay muted loop>
           <source src={require("../src/assets/theme.mp4")} type="video/mp4" />
-          {/* You can provide multiple source elements for different video formats */}
         </video>
       </div>
       <div className="header">
@@ -240,15 +232,20 @@ function App() {
       </form>
       <p className="query-message">Have a question or need assistance? Contact our support team through WhatsApp or Email:</p>
       <div className="support-icons-container">
-      <FontAwesomeIcon icon={faEnvelope} className="email-icon" onClick={handleEmailButtonClick} />
-      <FontAwesomeIcon icon={faWhatsapp} className="whatsapp-icon" onClick={handleWhatsAppButtonClick} />
+        <FontAwesomeIcon icon={faEnvelope} className="email-icon" onClick={handleEmailButtonClick} />
+        <FontAwesomeIcon icon={faWhatsapp} className="whatsapp-icon" onClick={handleWhatsAppButtonClick} />
+      </div>
 
-    </div>
+      {showSpinner && (
+        <div className="spinner-container">
+          <div className="spinner"></div>
+          <p>{submissionMessage}</p>
+        </div>
+      )}
 
-
-    {submitSuccess && (
-  <Alert message={`Hare Krishna 🙏🏻 ${submittedUsername} Ji! Your form is submitted successfully!`} />
-)}
+      {submitSuccess && (
+        <Alert message={`Hare Krishna 🙏🏻 ${submittedUsername} Ji! Your form is submitted successfully!`} />
+      )}
     </>
   );
 }
