@@ -63,8 +63,9 @@ div {
   max-width: 425px;
   padding: 9px;
   border-radius: 5px;
-  border: 3px solid rgb(31, 80, 226);
-  background-color: rgba(45, 128, 223, 0.7); 
+  border: 1px solid white;
+  background-color: #027CFD;
+  /* background-color: rgba(45, 128, 223, 0.7);  */
   /* background: transparent; */
   /* margin-right: 20px; Add space from the right edge */
 }
@@ -99,14 +100,15 @@ textarea {
 
 /* Style for the submit button */
 button[type="submit"] {
-  background-color: #007bff;
+  background-color: #538fdf;
   color: #fff;
   border: 2px solid white;
-  border-radius: 5px;
+  border-radius: 28px;
   padding: 10px 20px;
   font-size: 18px;
+  font-weight: bolder;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 /* Hover effect for the submit button */
@@ -233,15 +235,22 @@ select option {
 
 
 
-
+/* 
 .academy-name {
   font-size: 30px;
     margin-top: -15px;
   color: #fff; /* Text color */
-  display: flex;
+  /* display: flex;
   flex-direction: column-reverse;
+} */
+ 
+.academy-logo {
+  /* Add your logo styles here */
+  width: 402px;
+  height: 120px;
+  border: 2px solid white;
+  border-radius: 5px;
 }
-
 
 
 
@@ -270,11 +279,13 @@ select option {
 .whatsapp-icon {
   color: #25d366; /* WhatsApp's official green color */
   font-size: 40px;
+  cursor: pointer;
 }
 
 .email-icon {
   color: #0074d9; /* Blue color commonly used for email icons */
   font-size: 40px;
+  cursor: pointer;
 }
 
 
@@ -283,9 +294,9 @@ select option {
 .spinner-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  align-items:center;
+  justify-content:flex-end;
+  height: 210%;
   position: absolute;
   top: 0;
   left: 0;
@@ -293,6 +304,7 @@ select option {
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background */
   z-index: 999; /* Make sure it's on top of other elements */
+  margin-bottom: 50%;
 }
 
 .spinner {
@@ -312,6 +324,7 @@ select option {
 
 .spinner-container p {
   margin-top: 10px; /* Adjust spacing as needed */
-  text-align: center;
+  text-align: bottom;
   font-weight: bold;
+  margin-bottom: 90%;
 }

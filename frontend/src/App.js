@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import logo from '../src/assets/Logos.png'; // Replace with the correct path to your logo image
 
 function App() {
   const initialFormData = {
@@ -138,8 +139,9 @@ function App() {
         </video>
       </div>
       <div className="header">
-        <h1 className="academy-name">Hare Krishna Dance Academy</h1>
-      </div>
+  <img src={logo} alt="Hare Krishna Dance Academy Logo" className="academy-logo" />
+</div>
+
       <h1 style={{ width: '400px', margin: '0 auto' }}>{h1Text}</h1>
       <form className="form-container" onSubmit={handleSubmit}>
         <div>
