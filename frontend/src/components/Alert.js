@@ -10,7 +10,7 @@ function Alert({ message }) {
       // Auto-hide the alert after 3 seconds
       const timeout = setTimeout(() => {
         setShowAlert(false);
-      }, 3000);
+      }, 5000);
 
       return () => {
         clearTimeout(timeout);
