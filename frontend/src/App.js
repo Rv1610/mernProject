@@ -142,7 +142,7 @@ function App() {
   <img src={logo} alt="Hare Krishna Dance Academy Logo" className="academy-logo" />
 </div>
 
-      <h1 style={{ width: '400px', margin: '0 auto' }}>{h1Text}</h1>
+      <h1 style={{ width: '400px' }}>{h1Text}</h1>
       <form className="form-container" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Full Name:</label>
